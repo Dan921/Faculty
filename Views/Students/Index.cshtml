@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                <p>ID Студента</p>
+            </th>
+            <th>
                 <p>Имя</p>
             </th>
             <th>
@@ -33,28 +36,31 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SecondName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ThirdName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.ActionLink("Изменить", "Edit", new { id = item.StudentId }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Подробнее", "Details", new { id = item.StudentId }, new { @class = "btn btn-info" })
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.StudentId }, new { @class = "btn btn-warning" })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.StudentId }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Подробнее", "Details", new { id = item.StudentId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Удалить", "Delete", new { id = item.StudentId }, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

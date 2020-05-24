@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Faculty.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Faculty.Controllers
 {
@@ -51,6 +52,7 @@ namespace Faculty.Controllers
         // GET: Semesters/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.SemesterId = id;
             return View(db.Semesters.FirstOrDefault(p => p.SemesterId == id));
         }
 
@@ -61,9 +63,9 @@ namespace Faculty.Controllers
         {
             try
             {
-                Semester seme = db.Semesters.FirstOrDefault(p => p.SemesterId == id);
-                db.Remove(seme);
-                db.Add(semester);
+                Semester seme = db.Semesters.Find(id);
+                seme.SemesterNumber = semester.SemesterNumber;
+                db.Entry(seme).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -121,10 +123,9 @@ namespace Faculty.Controllers
 
         public ActionResult CreateSubjectsForSemesterId(int id)
         {
+            ViewBag.SemesterId = id;
             ViewBag.SemesterNumber = db.Semesters.FirstOrDefault(p => p.SemesterId == id).SemesterNumber;
-            SubjectsForSemester subjectsForSemester = new SubjectsForSemester();
-            subjectsForSemester.SemesterId = id;
-            return View(subjectsForSemester);
+            return View();
         }
 
         [HttpPost]

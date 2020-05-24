@@ -4,10 +4,10 @@
     ViewData["Title"] = "SubjectsForSemesterId";
 }
 
-<h1>Предметы в семестре: @ViewBag.SemesterNumber</h1>
+<h2>Предметы в семестре: @ViewBag.SemesterNumber</h2>
 
 @Html.ActionLink("Добавить запись", "CreateSubjectsForSemesterId", new { id = ViewBag.SemesterId }, new { @class = "btn btn-primary" })
-
+<p />
 <table class="table">
     <thead>
         <tr>

@@ -4,7 +4,7 @@
     ViewData["Title"] = "CreateAcademicPlanForSubjectId";
 }
 
-<h1>Добавление записи для: @ViewBag.SubjectName</h1>
+<h2>Добавление записи для: @ViewBag.SubjectName</h2>
 
 <hr />
 <div class="row">
@@ -13,12 +13,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StudentId" class="control-label">ID Студента</label>
-                <input asp-for="StudentId" class="form-control" />
+                <input asp-for="StudentId" class="form-control">
                 <span asp-validation-for="StudentId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SubjectId" class="control-label">ID Предмета</label>
-                <input asp-for="SubjectId" class="form-control"/>
+                <input asp-for="SubjectId" class="form-control" value=@ViewBag.SubjectId readonly="readonly"/>
                 <span asp-validation-for="SubjectId" class="text-danger"></span>
             </div>
             <div class="form-group">

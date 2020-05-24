@@ -4,7 +4,7 @@
     ViewData["Title"] = "CreateSubjectsForSemesterId";
 }
 
-<h1>Добавить предмет для семетра: @ViewBag.SemesterNumber</h1>
+<h2>Добавить предмет для семетра: @ViewBag.SemesterNumber</h2>
 
 <hr />
 <div class="row">
@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SemesterId" class="control-label">ID Семестра</label>
-                <input asp-for="SemesterId" class="form-control" />
+                <input asp-for="SemesterId" class="form-control" value=@ViewBag.SemesterId readonly="readonly"/>
                 <span asp-validation-for="SemesterId" class="text-danger"></span>
             </div>
             <div class="form-group">

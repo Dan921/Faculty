@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Faculty.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Faculty.Controllers
 {
@@ -51,6 +52,7 @@ namespace Faculty.Controllers
         // GET: Subjects/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.SubjectId = id;
             return View(db.Subjects.FirstOrDefault(p => p.SubjectId == id));
         }
 
@@ -61,9 +63,9 @@ namespace Faculty.Controllers
         {
             try
             {
-                Subject subj = db.Subjects.FirstOrDefault(p => p.SubjectId == id);
-                db.Subjects.Remove(subj);
-                db.Subjects.Add(subject);
+                Subject subj = db.Subjects.Find(id);
+                subj.Name = subject.Name;
+                db.Entry(subj).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -122,26 +124,26 @@ namespace Faculty.Controllers
 
         public ActionResult CreateAcademicPlanForSubjectId(int id)
         {
+            //ViewBag.StudentIdList = db.Students.Select(s => s.StudentId).ToList();
+            ViewBag.SubjectId = id;
             ViewBag.SubjectName = db.Subjects.FirstOrDefault(p => p.SubjectId == id).Name;
-            AcademicRecord academicRecord = new AcademicRecord();
-            academicRecord.SubjectId = id;
-            return View(academicRecord);
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateAcademicPlanForSubjectId(AcademicRecord academicRecord)
         {
-            try
-            {
+            //try
+            //{
                 db.AcademicPlan.Add(academicRecord);
                 db.SaveChanges();
                 return RedirectToAction("AcademicPlanForSubjectId", new { id = academicRecord.SubjectId });
-            }
-            catch
-            {
-                return RedirectToAction("Error");
-            }
+            //}
+            //catch
+            //{
+            //    return RedirectToAction("Error");
+            //}
         }
     }
 }

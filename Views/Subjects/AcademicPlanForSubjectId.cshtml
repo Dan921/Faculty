@@ -4,10 +4,10 @@
     ViewData["Title"] = "AcademicPlanForSubjectId";
 }
 
-<h1>Учебный план для предмета: @ViewBag.SubjectName</h1>
+<h2>Учебный план для предмета: @ViewBag.SubjectName</h2>
 
 @Html.ActionLink("Добавить запись", "CreateAcademicPlanForSubjectId", new { id = ViewBag.SubjectId }, new { @class = "btn btn-primary" })
-
+<p/>
 <table class="table">
     <thead>
         <tr>

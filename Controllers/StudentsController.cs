@@ -53,6 +53,7 @@ namespace Faculty.Controllers
         // GET: Students/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.StudentId = id;
             return View(db.Students.FirstOrDefault(p => p.StudentId == id));
         }
 
@@ -63,9 +64,13 @@ namespace Faculty.Controllers
         {
             try
             {
-                Student stud = db.Students.FirstOrDefault(p => p.StudentId == id);
-                db.Students.Remove(stud);
-                db.Students.Add(student);
+                Student stud = db.Students.Find(id);
+                stud.FirstName = student.FirstName;
+                stud.SecondName = student.SecondName;
+                stud.ThirdName = student.ThirdName;
+                stud.Address = student.Address;
+                stud.Phone = student.Phone;
+                db.Entry(stud).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
