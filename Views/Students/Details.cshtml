@@ -1,0 +1,53 @@
+﻿@model Faculty.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробнее</h1>
+
+<div>
+    <h4>Студент</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            ID Студента
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentId)
+        </dd>
+        <dt class="col-sm-2">
+            Имя
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            Фамилия
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SecondName)
+        </dd>
+        <dt class="col-sm-2">
+            Отчетсво
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ThirdName)
+        </dd>
+        <dt class="col-sm-2">
+            Адрес
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">Телефон</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.StudentId }, new { @class = "btn btn-info" })
+    <a asp-action="Index" class = "btn btn-info" >Вернуться к списку</a>
+    @Html.ActionLink("Оценки студента", "AcademicPlanForStudentId", new { id = Model.StudentId }, new { @class = "btn btn-info" })
+</div>

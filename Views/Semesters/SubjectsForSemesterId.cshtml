@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Faculty.Models.SubjectsForSemester>
+
+@{
+    ViewData["Title"] = "SubjectsForSemesterId";
+}
+
+<h1>Предметы в семестре: @ViewBag.SemesterNumber</h1>
+
+@Html.ActionLink("Добавить запись", "CreateSubjectsForSemesterId", new { id = ViewBag.SemesterId }, new { @class = "btn btn-primary" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID Предмета
+            </th>
+            <th>
+                Намименование предмета
+            </th>
+            <th>
+                Кол-во лекций
+            </th>
+            <th>
+                Кол-во практик
+            </th>
+            <th>
+                Кол-во лабораторных работ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectId)
+            </td>
+            <td>
+                @foreach (var i in ViewBag.Subjects)
+                {
+                    if (i.SubjectId == item.SubjectId)
+                    {<p>@i.Name</p>}
+            }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lecture_scope)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Practice_scope)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.laboratory_work_scope)
+            </td>
+            <td>
+                @Html.ActionLink("Удалить запись", "DeleteSubjectsForSemesterId", new { item.SubjectId, item.SemesterId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

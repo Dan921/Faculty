@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Faculty.Models.Student>
+
+@{
+    ViewData["Title"] = "Студенты";
+}
+
+<h1>Студенты</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добавить студента</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Имя</p>
+            </th>
+            <th>
+                <p>Фамилия</p>
+            </th>
+            <th>
+                <p>Отчество</p>
+            </th>
+            <th>
+                <p>Адрес</p>
+            </th>
+            <th>
+                <p>Телефон</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThirdName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.StudentId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Подробнее", "Details", new { id = item.StudentId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.StudentId }, new { @class = "btn btn-warning" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

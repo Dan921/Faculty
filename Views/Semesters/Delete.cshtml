@@ -1,0 +1,32 @@
+﻿@model Faculty.Models.Semester
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы действительно хотите удалить этот семестр?</h3>
+<div>
+    <h4>Семестер</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            ID Семестра
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SemesterId)
+        </dd>
+        <dt class = "col-sm-2">
+            Номер семестра
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SemesterNumber)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <a asp-action="Index" class = "btn btn-info">Вернуться к списку</a>
+    </form>
+</div>

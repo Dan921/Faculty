@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Faculty.Models.Semester>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Семестры</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добавить семестр</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID Семестра
+            </th>
+            <th>
+                Номер семестра
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SemesterId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SemesterNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.SemesterId }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Подробнее", "Details", new { id = item.SemesterId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Удалить", "Delete", new { id = item.SemesterId }, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Faculty.Models.AcademicRecord>
+
+@using System.Linq;
+
+@{
+    ViewData["Title"] = "AcademicPlanForStudentId";
+}
+
+<h2>Оценки студента: @ViewBag.FirstName @ViewBag.SecondName</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Предмет<p>
+            </th>
+            <th>
+                <p>Семестр<p>
+            </th>
+            <th>
+                <p>Оценка<p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @foreach (var i in ViewBag.Subjects)
+                {
+                    if (i.SubjectId == item.SubjectId)
+                    { <p>@i.Name</p> }
+                }
+            </td>
+            <td>
+                @foreach (var i in ViewBag.Semesters)
+                {
+                    if (i.SemesterId == item.SemesterId)
+                    { <p>@i.SemesterNumber</p> }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

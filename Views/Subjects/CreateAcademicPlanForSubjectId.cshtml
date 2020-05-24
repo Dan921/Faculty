@@ -1,0 +1,47 @@
+﻿@model Faculty.Models.AcademicRecord
+
+@{
+    ViewData["Title"] = "CreateAcademicPlanForSubjectId";
+}
+
+<h1>Добавление записи для: @ViewBag.SubjectName</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateAcademicPlanForSubjectId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label">ID Студента</label>
+                <input asp-for="StudentId" class="form-control" />
+                <span asp-validation-for="StudentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectId" class="control-label">ID Предмета</label>
+                <input asp-for="SubjectId" class="form-control"/>
+                <span asp-validation-for="SubjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SemesterId" class="control-label">ID Семестра</label>
+                <input asp-for="SemesterId" class="form-control" />
+                <span asp-validation-for="SemesterId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mark" class="control-label">Оценка</label>
+                <input asp-for="Mark" class="form-control" />
+                <span asp-validation-for="Mark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-info">Вернуться к списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
